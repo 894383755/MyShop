@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop" 
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	 <context:annotation-config />
+	 <context:component-scan base-package="cn.it.shop.."/>
+
+	 <!-- com.mchange.v2.c3p0.ComboPooledDataSource类在c3p0-0.9.5.1.jar包的com.mchange.v2.c3p0包中 -->
+	 <bean id="dataSource" 
+	 	class="com.mchange.v2.c3p0.ComboPooledDataSource" >  
+	    <property name="driverClass" value="com.mysql.jdbc.Driver" />  
+	    <property name="jdbcUrl" value="jdbc\:mysql\://localhost\:3306/shop" />  
+	    <property name="user" value="root" />  
+	    <property name="password" value="root" />
+	</bean>  
+	 
+	 <!-- org.springframework.orm.hibernate4.LocalSessionFactoryBean类在spring-orm-4.2.4.RELEASE.jar包的org.springframework.orm.hibernate4包中 -->
+	 <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+	 	<!-- 		配置数据库链接 -->
+	 	<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" /> <!-- 加载hibernate配置文件 -->
+	 </bean>
+	 
+	 <!-- org.springframework.orm.hibernate4.HibernateTransactionManager类spring-orm-4.2.4.RELEASE.jar包的org.springframework.orm.hibernate4包中 -->
+	 <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+	 	<property name="sessionFactory" ref="sessionFactory" />
+	 </bean>
+	 
+	 <tx:advice id="advice" transaction-manager="transactionManager">
+	 	<tx:attributes>
+<!-- 	 		<tx:method name="save*" propagation="REQUIRED"/> -->
+<!-- 	 		<tx:method name="update*" propagation="REQUIRED"/> -->
+<!-- 	 		<tx:method name="delete*" propagation="REQUIRED"/> -->
+	 		<tx:method name="*" propagation="SUPPORTS"/>
+	 	</tx:attributes>
+	 </tx:advice>
+	 
+	 <aop:config>
+	 	<!-- 配置哪些包的类要切入事务 -->
+	 	<aop:pointcut id="pointcut" expression="execution(* cn.it.shop.service.impl.*.*(..))" />
+	 	<aop:advisor advice-ref="advice" pointcut-ref="pointcut"/><!-- 连接了上面的advice和上面的pointcut -->
+	 </aop:config>
+	 
+	<!-- 	注册Model -->
+	<bean id="category" class="cn.it.shop.model.Category" > 
+		<property name = "id" value = "10"></property>
+		<property name="type" value = "女士服装"></property>
+	</bean>
+	
+	<!-- 	注册Service -->
+	<bean id="categoryService" class="cn.it.shop.service.impl.CategoryServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 	注册Action -->
+	<bean id="categoryAction" scope="prototype"
+		class="cn.it.shop.action.CategoryAction">
+		<property name="categoryService" ref="categoryService" />
+		<property name="category" ref="category" />
+	</bean>
+	<bean id="date" class="java.util.Date"></bean>
+</beans>
