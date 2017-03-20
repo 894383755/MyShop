@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.annotation.Resource;
 
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -14,7 +15,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.context.ContextConfiguration;
 
 import cn.it.shop.model.Category;
 import cn.it.shop.service.CategoryService;
@@ -50,8 +50,11 @@ public class TestMyShop {
     	trans.commit();
     	session.close();
 	}
-    @Test //测试Hibernate和Spring整合后  
+	@Test //测试Hibernate和Spring整合后  
     public void hibernateAndSpring() { 
-    	//categoryService.update(new Category(3,"休闲女式")); //categoryService通过Spring从上面注入进来的  
+    	ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+    	CategoryService service = (CategoryService)context.getBean("categoryService");
+    	System.out.println(service.getClass().getName());
+    	service.update(new Category(1,"测试"));
     } 
 }

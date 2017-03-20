@@ -7,10 +7,16 @@
 	<!--  交给spring处理 -->
  <constant name="struts.objectFactory" value="spring" ></constant>
  
-    <package name="default" extends="struts-default">  
+    <package name="shop" extends="struts-default">  
+<!--         <global-results>   -->
+<!--             <result name="aindex">/WebContent/main/aindex.jsp</result>   -->
+<!--         </global-results>  -->
         <action name="category_*" class="cn.it.shop.action.CategoryAction" method="{1}">  
             <result name="index">/index.jsp</result>  
         </action>  
+        <action name="send_*_*" class="sendAction" method="execute">  
+            <result name="send">/WEB-INF/{1}/{2}.jsp</result>  
+        </action>
     </package>  
   
 </struts>  

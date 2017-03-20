@@ -6,7 +6,6 @@ import org.hibernate.SessionFactory;
 
 import cn.it.shop.model.Category;
 
-public interface CategoryService{
-	public void save(Category category); //用来测试Hibernate环境  
-	public void update(Category category);//测试spring和hibernate
+public interface CategoryService extends BaseService<Category>{
+
 }

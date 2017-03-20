@@ -11,18 +11,24 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
         http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx.xsd">
-
+        http://www.springframework.org/schema/tx/spring-tx.xsd">	
+        
 	 <context:annotation-config />
 	 <context:component-scan base-package="cn.it.shop.."/>
 
 	 <!-- com.mchange.v2.c3p0.ComboPooledDataSource类在c3p0-0.9.5.1.jar包的com.mchange.v2.c3p0包中 -->
-	 <bean id="dataSource" 
-	 	class="com.mchange.v2.c3p0.ComboPooledDataSource" >  
+	 <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"  >  
 	    <property name="driverClass" value="com.mysql.jdbc.Driver" />  
-	    <property name="jdbcUrl" value="jdbc\:mysql\://localhost\:3306/shop" />  
+	    <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/shop" />  
 	    <property name="user" value="root" />  
 	    <property name="password" value="root" />
+	    	    
+	    <property name="minPoolSize" value="1" />
+		<property name="maxPoolSize" value="3" />
+		<property name="maxIdleTime" value="60" />
+		<property name="acquireIncrement" value="5" />
+		<property name="initialPoolSize" value="1" />
+		<property name="idleConnectionTestPeriod" value="60" />
 	</bean>  
 	 
 	 <!-- org.springframework.orm.hibernate4.LocalSessionFactoryBean类在spring-orm-4.2.4.RELEASE.jar包的org.springframework.orm.hibernate4包中 -->
@@ -38,18 +44,23 @@
 	 </bean>
 	 
 	 <tx:advice id="advice" transaction-manager="transactionManager">
-	 	<tx:attributes>
+<!-- 	 	<tx:attributes> -->
 <!-- 	 		<tx:method name="save*" propagation="REQUIRED"/> -->
 <!-- 	 		<tx:method name="update*" propagation="REQUIRED"/> -->
 <!-- 	 		<tx:method name="delete*" propagation="REQUIRED"/> -->
-	 		<tx:method name="*" propagation="SUPPORTS"/>
-	 	</tx:attributes>
+<!-- 	 		<tx:method name="*" propagation="SUPPORTS"/> -->
+<!-- 	 	</tx:attributes> -->
 	 </tx:advice>
 	 
-	 <aop:config>
+	 <aop:config proxy-target-class="true">
 	 	<!-- 配置哪些包的类要切入事务 -->
 	 	<aop:pointcut id="pointcut" expression="execution(* cn.it.shop.service.impl.*.*(..))" />
-	 	<aop:advisor advice-ref="advice" pointcut-ref="pointcut"/><!-- 连接了上面的advice和上面的pointcut -->
+	 	<aop:advisor id="adisor" advice-ref="advice" pointcut-ref="pointcut"/>
+<!-- 	 	<aop:aspect id="aspect" ref = "transactionManager"> -->
+<!-- 	 		<aop:before method="beginTransaction" pointcut-ref = "pointcut"/> -->
+<!-- 	 		<aop:after-returning method="commit" pointcut-ref = "pointcut"/> -->
+<!-- 	 		<aop:after-throwing method="rollback" pointcut-ref = "pointcut"/> -->
+<!-- 	 	</aop:aspect> -->
 	 </aop:config>
 	 
 	<!-- 	注册Model -->
@@ -59,15 +70,23 @@
 	</bean>
 	
 	<!-- 	注册Service -->
-	<bean id="categoryService" class="cn.it.shop.service.impl.CategoryServiceImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+<!-- 	<bean id="baseService" class="cn.it.shop.service.impl.BaseServiceImpl" lazy-init="true">   -->
+<!--      	<property name="sessionFactory" ref="sessionFactory" />   -->
+<!-- 	</bean> -->
+<!-- 	<bean id="categoryService" class="cn.it.shop.service.impl.CategoryServiceImpl" parent="baseService"> -->
+<!-- 		<property name="sessionFactory" ref="sessionFactory" /> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="accountService" class="cn.it.shop.service.impl.AccountServiceImpl" parent="baseService" />  -->
 	
 	<!-- 	注册Action -->
-	<bean id="categoryAction" scope="prototype"
-		class="cn.it.shop.action.CategoryAction">
-		<property name="categoryService" ref="categoryService" />
-		<property name="category" ref="category" />
-	</bean>
+<!-- 	<bean id="baseAction" class="cn.it.shop.action.BaseAction" scope="prototype">   -->
+<!-- 	     <property name="categoryService" ref="categoryService"></property>   -->
+<!-- 	     <property name="accountService" ref="accountService"></property>   -->
+<!-- 	</bean>   -->
+<!-- 	<bean id="categoryAction" scope="prototype" parent="baseAction" -->
+<!-- 		class="cn.it.shop.action.CategoryAction"> -->
+<!-- 		<property name="categoryService" ref="categoryService" /> -->
+<!-- 		<property name="category" ref="category" /> -->
+<!-- 	</bean> -->
 	<bean id="date" class="java.util.Date"></bean>
 </beans>
