@@ -44,12 +44,12 @@
 	 </bean>
 	 
 	 <tx:advice id="advice" transaction-manager="transactionManager">
-<!-- 	 	<tx:attributes> -->
-<!-- 	 		<tx:method name="save*" propagation="REQUIRED"/> -->
-<!-- 	 		<tx:method name="update*" propagation="REQUIRED"/> -->
-<!-- 	 		<tx:method name="delete*" propagation="REQUIRED"/> -->
-<!-- 	 		<tx:method name="*" propagation="SUPPORTS"/> -->
-<!-- 	 	</tx:attributes> -->
+	 	<tx:attributes>
+	 		<tx:method name="save*" propagation="REQUIRED"/>
+	 		<tx:method name="update*" propagation="REQUIRED"/>
+	 		<tx:method name="delete*" propagation="REQUIRED"/>
+	 		<tx:method name="*" propagation="SUPPORTS"/>
+	 	</tx:attributes>
 	 </tx:advice>
 	 
 	 <aop:config proxy-target-class="true">
@@ -64,10 +64,11 @@
 	 </aop:config>
 	 
 	<!-- 	注册Model -->
-	<bean id="category" class="cn.it.shop.model.Category" > 
-		<property name = "id" value = "10"></property>
-		<property name="type" value = "女士服装"></property>
-	</bean>
+<!-- 	<bean id="category" class="cn.it.shop.model.Category" >  -->
+<!-- 		<property name = "id" value = "10"></property> -->
+<!-- 		<property name="type" value = "女士服装"></property> -->
+<!-- 		<property name="hot"  value = "true"></property> -->
+<!-- 	</bean> -->
 	
 	<!-- 	注册Service -->
 <!-- 	<bean id="baseService" class="cn.it.shop.service.impl.BaseServiceImpl" lazy-init="true">   -->

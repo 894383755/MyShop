@@ -40,7 +40,7 @@ public class BaseServiceImpl<T> implements BaseService<T>{
     }  
   
     @Override  
-    public void update(T t) {  
+    public void update(T t) { 
         getSession().update(t);   
     }  
   

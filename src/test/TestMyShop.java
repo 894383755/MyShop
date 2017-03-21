@@ -15,15 +15,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cn.it.shop.model.Category;
 import cn.it.shop.service.CategoryService;
 import cn.it.shop.service.impl.CategoryServiceImpl;
-
-//@ContextConfiguration(locations="classpath:beans.xml")
+@RunWith(SpringJUnit4ClassRunner.class)  
+@ContextConfiguration(locations="classpath:beans.xml")
 public class TestMyShop {
-	 @Resource  
-	 private Date date;
+	@Resource  
+	private Date date;
 	@Test //测试Hibernate的开发环境  
     public void springIoc() { 
         System.out.println(date);  
@@ -33,7 +35,7 @@ public class TestMyShop {
     public void hihernate() { 
     	System.out.println("test : hihernate\n"); 
         CategoryService categoryService = new CategoryServiceImpl();  
-        Category category = new Category(5,"男士休闲");  
+        Category category = new Category(5,"男士休闲",true);  
         categoryService.update(category);
     } 
 	@Test  //测试Hibernate的开发环境，直接分解测试哪里出错了，可以直接new 
@@ -45,7 +47,7 @@ public class TestMyShop {
     	SessionFactory sessionFactory = configuration.buildSessionFactory(standardServiceRegistryBuilder.build());
     	Session session = sessionFactory.openSession();
     	Transaction trans = session.beginTransaction();
-    	Category category = new Category(10,"男士休闲");
+    	Category category = new Category(10,"男士休闲",true);
     	session.save(category);
     	trans.commit();
     	session.close();
@@ -55,6 +57,22 @@ public class TestMyShop {
     	ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
     	CategoryService service = (CategoryService)context.getBean("categoryService");
     	System.out.println(service.getClass().getName());
-    	service.update(new Category(1,"测试"));
+    	service.update(new Category(1,"测试",true));
     } 
+	@Resource  
+    private CategoryService categoryService;  
+      
+//    @Test  //测试级联
+//    public void testQueryJoinAccount() { 
+//        for(Category c : categoryService.queryJoinAccount("")) {  
+//             System.out.println(c);  
+//             System.out.println(c.getAccount());  
+//        }  
+//    }
+    @Test
+    public void testQueryJoinAccount2() {  
+        for(Category c : categoryService.queryJoinAccount("",1,2)) { //显示第一页，每页2条数据  
+            System.out.println(c + "," + c.getAccount());  
+        }  
+    }
 }

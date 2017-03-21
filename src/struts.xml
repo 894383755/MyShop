@@ -4,19 +4,38 @@
     "http://struts.apache.org/dtds/struts-2.3.dtd">  
   
 <struts>  
-	<!--  交给spring处理 -->
- <constant name="struts.objectFactory" value="spring" ></constant>
- 
-    <package name="shop" extends="struts-default">  
-<!--         <global-results>   -->
-<!--             <result name="aindex">/WebContent/main/aindex.jsp</result>   -->
-<!--         </global-results>  -->
-        <action name="category_*" class="cn.it.shop.action.CategoryAction" method="{1}">  
+ 	<constant name="struts.devMode" value="true" />  
+      
+    <package name="shop" extends="json-default"><!-- jason-default继承了struts-default -->  
+      
+        <global-results>  
+            <result name="aindex">/WEB-INF/main/aindex.jsp</result>  
+        </global-results>  
+  
+        <!-- class对应的是Spring中配置该Action的id值，因为要交给Spring管理 -->  
+        <action name="category_*" class="categoryAction" method="{1}">  
+            <!-- 必须要先添加json包，然后上面继承json-default -->  
+            <result name="jsonMap" type="json">  
+                <!-- 要转换成json对象的数据 -->  
+                <param name="root">pageMap</param>  
+                <!-- 配置黑名单，过滤不需要的选项 ，支持正则表达式  
+                json格式：{total:3,rows:[{account:{id:2,login:"user",name:"客服A",pass:"user"},hot:true,id:3,…}]}  
+                -->  
+                <param name="excludeProperties">  
+                    <!-- rows[0].account.pass-->  
+                                        <!-- 这里显示不了正则表达式， CSDN的一个bug，我接个图放下面 -->  
+                </param>  
+            </result>  
+        </action>  
+          
+        <action name="account_*" class="accountAction" method="{1}">  
             <result name="index">/index.jsp</result>  
         </action>  
-        <action name="send_*_*" class="sendAction" method="execute">  
+          
+        <!-- 用来完成系统 请求转发的action,所有的请求都交给execute-->  
+        <action name="send_*_*" class="sendAction">  
             <result name="send">/WEB-INF/{1}/{2}.jsp</result>  
-        </action>
-    </package>  
+        </action>  
+    </package>   
   
 </struts>  

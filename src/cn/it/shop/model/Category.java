@@ -1,27 +1,96 @@
 package cn.it.shop.model;
 
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 public class Category implements java.io.Serializable {
 	private Integer id;
-	//private Account account;
+	private Account account;
 	private String type;
-	
-	public Category(){
+	private Boolean hot;
+//	private Set<Product> products = new HashSet<Product>(0);
+
+
+	// Constructors
+
+	/** default constructor */
+	public Category() {
 	}
-	public Category(Integer id,String type){
+
+	@Override
+	public String toString() {
+		return "Category [id=" + id + ", account=" + account + ", type=" + type
+				+ ", hot=" + hot + "]";
+	}
+
+
+
+	public Category(Integer id, String type, Boolean hot) {
+		super();
 		this.id = id;
 		this.type = type;
+		this.hot = hot;
 	}
+
+	public Category(String type, Boolean hot) {
+		super();
+		this.type = type;
+		this.hot = hot;
+	}
+
+	// Property accessors
+	@Id
+	@GeneratedValue
+	@Column(name = "id", unique = true, nullable = false)
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
-	public String getType() {
-		return type;
-	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "aid")
+	public Account getAccount() {
+		return this.account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	@Column(name = "type", length = 20)
+	public String getType() {
+		return this.type;
+	}
+
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	@Column(name = "hot")
+	public Boolean getHot() {
+		return this.hot;
+	}
+
+	public void setHot(Boolean hot) {
+		this.hot = hot;
+	}
+
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "category")
+//	public Set<Product> getProducts() {
+//		return this.products;
+//	}
+//
+//	public void setProducts(Set<Product> products) {
+//		this.products = products;
+//	}
 	
 }

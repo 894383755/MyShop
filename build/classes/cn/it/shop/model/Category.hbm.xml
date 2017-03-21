@@ -11,6 +11,8 @@
 		<!-- 用户名 -->
 		<property name="type" column="type" type="string"
 			not-null="true" />
-		<!-- 密码 -->
+		<!-- 热度 -->
+		<property name="hot" column="hot" type="java.lang.Boolean"
+			not-null="true" />
 	</class>
 </hibernate-mapping>
