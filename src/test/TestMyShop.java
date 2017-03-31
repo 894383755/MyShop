@@ -2,6 +2,7 @@ package test;
 
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -11,6 +12,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.hql.spi.FilterTranslator;
+import org.hibernate.hql.spi.QueryTranslatorFactory;
+import org.hibernate.internal.SessionFactoryImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
@@ -18,7 +22,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import cn.it.shop.model.Account;
 import cn.it.shop.model.Category;
+import cn.it.shop.service.AccountService;
 import cn.it.shop.service.CategoryService;
 import cn.it.shop.service.impl.CategoryServiceImpl;
 @RunWith(SpringJUnit4ClassRunner.class)  
@@ -61,16 +67,9 @@ public class TestMyShop {
     } 
 	@Resource  
     private CategoryService categoryService;  
-      
-//    @Test  //测试级联
-//    public void testQueryJoinAccount() { 
-//        for(Category c : categoryService.queryJoinAccount("")) {  
-//             System.out.println(c);  
-//             System.out.println(c.getAccount());  
-//        }  
-//    }
+   
     @Test
-    public void testQueryJoinAccount2() {  
+    public void testQueryJoinAccount2() { 
         for(Category c : categoryService.queryJoinAccount("",1,2)) { //显示第一页，每页2条数据  
             System.out.println(c + "," + c.getAccount());  
         }  

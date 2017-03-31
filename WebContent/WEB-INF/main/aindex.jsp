@@ -55,7 +55,8 @@
     </script>  
 </head>  
   
-    <body class="easyui-layout">  
+    <body class="easyui-layout">
+    	<div id="win" data-options="collapsible:false,minimizable:false,maximizable:false,modal:true"></div>   
         <div data-options="region:'north',title:'欢迎来到易购后台管理',split:true" style="height:100px;"></div>     
         <div data-options="region:'west',title:'系统操作',split:true" style="width:200px;">  
             <!-- 此处显示的是系统菜单 -->  

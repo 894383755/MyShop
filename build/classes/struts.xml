@@ -12,7 +12,7 @@
             <result name="aindex">/WEB-INF/main/aindex.jsp</result>  
         </global-results>  
   
-        <!-- class对应的是Spring中配置该Action的id值，因为要交给Spring管理 -->  
+       <!-- class对应的是Spring中配置该Action的id值，因为要交给Spring管理 -->  
         <action name="category_*" class="categoryAction" method="{1}">  
             <!-- 必须要先添加json包，然后上面继承json-default -->  
             <result name="jsonMap" type="json">  
@@ -23,14 +23,17 @@
                 -->  
                 <param name="excludeProperties">  
                     <!-- rows[0].account.pass-->  
-                                        <!-- 这里显示不了正则表达式， CSDN的一个bug，我接个图放下面 -->  
+                     rows\[\d+\]\.account\.pass, 
                 </param>  
+            </result>
+            <result name="stream" type="stream"> <!-- 以stream的形式，type为stream -->  
+                <param name="inputName">inputStream</param> <!-- imputStream中有要传的数据 -->  
             </result>  
         </action>  
           
         <action name="account_*" class="accountAction" method="{1}">  
             <result name="index">/index.jsp</result>  
-        </action>  
+        </action> 
           
         <!-- 用来完成系统 请求转发的action,所有的请求都交给execute-->  
         <action name="send_*_*" class="sendAction">  

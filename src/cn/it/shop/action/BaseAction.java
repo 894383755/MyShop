@@ -1,6 +1,8 @@
 package cn.it.shop.action;
 
+import java.io.InputStream;
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -20,6 +22,12 @@ import cn.it.shop.service.CategoryService;
 @Controller("baseAction")
 @Scope("prototype")
 public class BaseAction<T> extends ActionSupport implements RequestAware,SessionAware,ApplicationAware,ModelDriven{  
+	//用来装有将要被打包成json格式返回给前台的数据  
+    protected List<T> jsonList = null;
+	//
+	protected String ids; 
+	//输入流
+    protected InputStream inputStream;  
 	//page和rows和分页有关，pageMap存放查询的数据，然后打包成json格式用的  
     //page和rows实现get和set方法，pageMap只需要实现get方法即可，因为pageMap不是接收前台参数的，是让struts获取的  
 	protected Integer page;  
@@ -31,12 +39,6 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	@Resource
     protected AccountService accountService;  
       
-    public void setCategoryService(CategoryService categoryService) {  
-        this.categoryService = categoryService;  
-    }  
-    public void setAccountService(AccountService accountService) {  
-        this.accountService = accountService;  
-    }  
   
     //域对象   
     protected Map<String, Object> request;  
@@ -60,7 +62,7 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
     }  
     
     @Override  
-    public T getModel() { //这里通过解析传进来的T来new一个对应的instance  
+    public T getModel() { 
         ParameterizedType type = (ParameterizedType)this.getClass().getGenericSuperclass();  
         Class clazz = (Class)type.getActualTypeArguments()[0];  
         try {  
@@ -88,5 +90,31 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	}
 	public void setPageMap(Map<String, Object> pageMap) {
 		this.pageMap = pageMap;
+	}
+	public String getIds() {
+		return ids;
+	}
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
+	public List<T> getJsonList() {
+		return jsonList;
+	}
+	public void setJsonList(List<T> jsonList) {
+		this.jsonList = jsonList;
+	}  
+    public void setCategoryService(CategoryService categoryService) {  
+        this.categoryService = categoryService;  
+    }  
+    public void setAccountService(AccountService accountService) {  
+        this.accountService = accountService;  
+    }
+
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
 	}  
 }  

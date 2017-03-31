@@ -30,12 +30,12 @@ public class Category implements java.io.Serializable {
 	}
 
 
-
 	public Category(Integer id, String type, Boolean hot) {
 		super();
 		this.id = id;
 		this.type = type;
 		this.hot = hot;
+		//this.account = account;
 	}
 
 	public Category(String type, Boolean hot) {
@@ -44,7 +44,6 @@ public class Category implements java.io.Serializable {
 		this.hot = hot;
 	}
 
-	// Property accessors
 	@Id
 	@GeneratedValue
 	@Column(name = "id", unique = true, nullable = false)
@@ -56,8 +55,8 @@ public class Category implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "aid")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "account_id")
 	public Account getAccount() {
 		return this.account;
 	}
