@@ -1,20 +1,24 @@
 package cn.it.shop.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToMany;
+@Entity
 public class Category implements java.io.Serializable {
 	private Integer id;
 	private Account account;
 	private String type;
 	private Boolean hot;
-//	private Set<Product> products = new HashSet<Product>(0);
+	private Set<Product> products = new HashSet<Product>(0);
 
 
 	// Constructors
@@ -83,13 +87,13 @@ public class Category implements java.io.Serializable {
 		this.hot = hot;
 	}
 
-//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "category")
-//	public Set<Product> getProducts() {
-//		return this.products;
-//	}
-//
-//	public void setProducts(Set<Product> products) {
-//		this.products = products;
-//	}
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "category")
+	public Set<Product> getProducts() {
+		return this.products;
+	}
+
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
 	
 }

@@ -1,20 +1,22 @@
 package cn.it.shop.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
+@Entity
 public class Account implements java.io.Serializable {
 	private Integer id;
 	private String login;
 	private String name;
 	private String pass;
-	private Set<Category> categories;
+	private Set<Category> categories  = new HashSet<Category>(0);
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "account")  
 	public Set<Category> getCategories() {  

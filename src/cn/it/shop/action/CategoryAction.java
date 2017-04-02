@@ -31,7 +31,6 @@ public class CategoryAction extends BaseAction<Category> {
         Long total = categoryService.getCount(model.getType()); //这个方法没写，我们等会儿去Service层完善一下  
         System.out.println("queryJoinAccount:"+total);  
         pageMap.put("total", total); //存储为JSON格式，再把total存放好  
-  
         return "jsonMap";  
     } 
     public String deleteByIds() {  

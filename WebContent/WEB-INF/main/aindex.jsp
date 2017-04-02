@@ -44,7 +44,8 @@
                     $("#tt").tabs("add",{  
                         title:text,  
                         closable:true,  
-                        content:'<iframe src="send_category_query.action" frameborder="0" width="100%" height="100%" />'  
+                        //content:'<iframe src="send_category_query.action" frameborder="0" width="100%" height="100%" />'  
+                        content:'<iframe title=' + text + ' src=' + href + ' frameborder="0" width="100%" height="100%" />'
                         //href:默认通过url地址加载远程的页面，但是仅仅是body部分  
                         //href:'send_category_query.action'  
                     });  
@@ -56,6 +57,7 @@
 </head>  
   
     <body class="easyui-layout">
+    	<!-- 穿件窗口 -->
     	<div id="win" data-options="collapsible:false,minimizable:false,maximizable:false,modal:true"></div>   
         <div data-options="region:'north',title:'欢迎来到易购后台管理',split:true" style="height:100px;"></div>     
         <div data-options="region:'west',title:'系统操作',split:true" style="width:200px;">  
@@ -64,7 +66,7 @@
                 <div title="基本操作" data-options="iconCls:'icon-save'">     
                     <ul>  
                         <li><a href="#" title="send_category_query.action">类别管理</a>  
-                        <li><a href="#">商品管理</a>  
+                        <li><a href="#" title="send_product_query.action">商品管理</a>  
                     </ul>  
                 </div>     
                 <div title="其他操作" data-options="iconCls:'icon-reload'">  

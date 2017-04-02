@@ -32,9 +32,25 @@
         </action>  
           
         <action name="account_*" class="accountAction" method="{1}">  
-            <result name="index">/index.jsp</result>  
+            <result name="index">/index.jsp</result>
+            <result name="jsonList" type="json">  
+		        <param name="root">jsonList</param>  
+		        <param name="excludeProperties">  
+		            <!-- [0].pass, [1].pass -->  
+		             \[\d+\]\.pass,\[\d+\]\.name,
+		        </param>  
+		    </result>  
         </action> 
-          
+        
+        <action name="product_*" class="productAction" method="{1}">
+			<result name="jsonMap" type="json">
+				<param name="root">pageMap</param>
+				<param name="excludeProperties">
+					<!-- rows[0].category.account -->
+					rows\[\d+\]\.category\.account,			
+				</param>
+			</result>
+		</action>  
         <!-- 用来完成系统 请求转发的action,所有的请求都交给execute-->  
         <action name="send_*_*" class="sendAction">  
             <result name="send">/WEB-INF/{1}/{2}.jsp</result>  

@@ -20,15 +20,11 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category> implements Ca
 		 	//注意此处使用左外连接会出错
 		 	//String hql = "from Category c left join fetch c.account where c.type like :type"; 
 		 	String hql = "from Category c where c.type like :type";  
-		        return getSession().createQuery(hql)  
-		                .setString("type", "%" + type + "%").list(); 
-		 	
-//		 	String hql = "from Category c left join fetch c.account where c.type like :type";
-//	        return getSession().createQuery(hql)  
-//	                .setString("type", "%" + type + "%")  
-//	                .setFirstResult((page-1) * size) //从第几个开始显示  
-//	                .setMaxResults(size) //显示几个  
-//	                .list();  
+	        return getSession().createQuery(hql)  
+	                .setString("type", "%" + type + "%")  
+	                .setFirstResult((page-1) * size) //从第几个开始显示  
+	                .setMaxResults(size) //显示几个  
+	                .list();  
 	    } 
 	 @Override  
     public Long getCount(String type) {  
