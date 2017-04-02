@@ -6,12 +6,8 @@ import java.util.List;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
-import com.opensymphony.xwork2.ActionSupport;
-
 import cn.it.shop.model.Category;
-import cn.it.shop.service.CategoryService;
-import cn.it.shop.service.impl.CategoryServiceImpl;
+
 @Controller("categoryAction")
 @Scope("prototype")
 public class CategoryAction extends BaseAction<Category> {

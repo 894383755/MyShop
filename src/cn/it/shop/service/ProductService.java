@@ -19,4 +19,5 @@ public interface ProductService extends BaseService<Product> {
 	 * @return
 	 */
 	public Long getCount(String type);
+	public void deleteByIds(String ids);
 }

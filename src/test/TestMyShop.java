@@ -22,6 +22,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import cn.it.shop.action.CategoryAction;
+import cn.it.shop.action.ProductAction;
 import cn.it.shop.model.Account;
 import cn.it.shop.model.Category;
 import cn.it.shop.service.AccountService;

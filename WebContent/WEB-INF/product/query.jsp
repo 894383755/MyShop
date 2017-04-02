@@ -34,18 +34,63 @@
  					text:'添加商品',
 					handler: function(){
 						//添加触发代码
+						parent.$("#win").window({ //因为<div>放在了aindex.jsp中，所以这里创建窗口要先调用parent  
+                            title:"添加类别",  
+                            width:350,  
+                            height:150,  
+                            content:'<iframe src="send_product_save.action" frameborder="0" width="100%" height="100%"/>'  
+                        });
 					}
 			     },'-',{
  					iconCls: 'icon-edit',
 					text:'更新商品',
 					handler: function(){
-	                                        //添加触发代码
+	                    //添加触发代码
 					}
 			     },'-',{
 					iconCls: 'icon-remove',
 					 text:'删除商品',
 					handler: function(){
-						//添加触发代码					
+						//添加触发代码	
+						var rows = $("#dg").datagrid("getSelections");//判断是否有选中行记录，使用getSelections获取选中的所有行  
+				        //返回被选中的行，如果没有任何行被选中，则返回空数组  
+				        if(rows.length == 0) {  
+				            //弹出提示信息  
+				            $.messager.show({ //语法类似于java中的静态方法，直接对象调用  
+				                title:'错误提示',  
+				                msg:'至少要选择一条记录',  
+				                timeout:2000,  
+				                showType:'slide',  
+				            });  
+				        } else {  
+				            //提示是否确认删除，如果确认则执行删除的逻辑  
+				            $.messager.confirm('删除的确认对话框', '您确定要删除此项吗？', function(r){  
+				                if (r){  
+				                    //1. 从获取的记录中获取相应的的id,拼接id的值，然后发送后台1,2,3,4  
+				                    var ids = "";  
+				                    for(var i = 0; i < rows.length; i ++) {  
+				                        ids += rows[i].id + ",";  
+				                    }  
+				                    ids = ids.substr(0, ids.lastIndexOf(","));  
+				                    //2. 发送ajax请求  
+				                    $.post("product_deleteByIds.action",{ids:ids},function(result){  
+				                        if(result == "true") {  
+				                            //将刚刚选中的记录删除，要不然会影响后面更新的操作  
+				                            $("#dg").datagrid("uncheckAll");  
+				                            //刷新当前页，查询的时候我们用的是load，刷新第一页，reload是刷新当前页  
+				                            $("#dg").datagrid("reload");//不带参数默认为上面的queryParams       
+				                        } else {  
+				                            $.messager.show({   
+				                                title:'删除异常',  
+				                                msg:'删除失败，请检查操作',  
+				                                timeout:2000,  
+				                                showType:'slide',  
+				                            });  
+				                        }  
+				                    },"text");  
+				                }  
+				            });  
+				        }
 					}
  			    },'-',{ //查询按钮不是LinkButton，它有语法，但是也支持解析HTML标签
 					text:"<input id='ss' name='serach' />"
@@ -103,6 +148,9 @@
  				//触发查询事件
 				 searcher:function(value,name){ //value表示输入的值
 				    //添加触发代码
+			        $('#dg').datagrid('load',{//重新load，参数name指定为用户输入value  
+			            name: value  
+			        }); 
 				}, 
 				prompt:'请输入搜索关键字' 
  			}); 

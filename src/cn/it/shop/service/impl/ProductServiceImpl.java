@@ -27,4 +27,9 @@ public class ProductServiceImpl extends BaseServiceImpl<Product> implements Prod
 	            .setString("name", "%" + name + "%")
 	            .uniqueResult(); //返回一条记录:总记录数
 	    }
+	    @Override  
+	    public void deleteByIds(String ids) {  
+	        String hql = "delete from product p where p.id in (" + ids + ")";  
+	        getSession().createQuery(hql).executeUpdate();  
+	    }
 }
