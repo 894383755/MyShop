@@ -46,10 +46,12 @@
 			<result name="jsonMap" type="json">
 				<param name="root">pageMap</param>
 				<param name="excludeProperties">
-					<!-- rows[0].category.account -->
 					rows\[\d+\]\.category\.account,			
 				</param>
 			</result>
+			<result name="stream" type="stream">  
+                <param name="inputName">inputStream</param>  
+            </result>
 		</action>  
         <!-- 用来完成系统 请求转发的action,所有的请求都交给execute-->  
         <action name="send_*_*" class="sendAction">  

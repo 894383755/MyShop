@@ -26,8 +26,10 @@ import cn.it.shop.action.CategoryAction;
 import cn.it.shop.action.ProductAction;
 import cn.it.shop.model.Account;
 import cn.it.shop.model.Category;
+import cn.it.shop.model.Product;
 import cn.it.shop.service.AccountService;
 import cn.it.shop.service.CategoryService;
+import cn.it.shop.service.ProductService;
 import cn.it.shop.service.impl.CategoryServiceImpl;
 @RunWith(SpringJUnit4ClassRunner.class)  
 @ContextConfiguration(locations="classpath:beans.xml")
@@ -76,4 +78,14 @@ public class TestMyShop {
             System.out.println(c + "," + c.getAccount());  
         }  
     }
+    @Resource  
+    private ProductService productService;  
+    
+    @Test
+    public void testQueryJoinAccount3() { 
+    	for(Product c : productService.queryJoinCategory("",1,2)) { //显示第一页，每页2条数据  
+    		System.out.println(c + "," + c.getName());  
+    	}  
+    }
+
 }

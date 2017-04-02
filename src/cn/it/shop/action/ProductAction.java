@@ -13,15 +13,7 @@ import cn.it.shop.model.Product;
 @Controller("productAction")
 @Scope("prototype")
 public class ProductAction extends BaseAction<Product> {
-	static {
-		System.out.println("进入productAction");
-	}
-	public String queryJoinCategory() {
-		System.out.println("进入productAction_query");
-		System.out.println("name:" + model.getName());
-		System.out.println("page：" + page);
-		System.out.println("rows：" + rows);
-		
+	public String queryJoinCategory() {		
 		//用来存储分页的数据
 		pageMap = new HashMap<String, Object>();
 		

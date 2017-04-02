@@ -46,7 +46,6 @@
 			<result name="jsonMap" type="json">
 				<param name="root">pageMap</param>
 				<param name="excludeProperties">
-					<!-- rows[0].category.account -->
 					rows\[\d+\]\.category\.account,			
 				</param>
 			</result>
