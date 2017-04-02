@@ -18,7 +18,7 @@ public class Category implements java.io.Serializable {
 	private Account account;
 	private String type;
 	private Boolean hot;
-	private Set<Product> products = new HashSet<Product>(0);
+	//private Set<Product> products = new HashSet<Product>(0);
 
 
 	// Constructors
@@ -30,7 +30,7 @@ public class Category implements java.io.Serializable {
 	@Override
 	public String toString() {
 		return "Category [id=" + id + ", account=" + account + ", type=" + type
-				+ ", hot=" + hot + "]";
+				+ ", hot=" + hot +  "]";
 	}
 
 
@@ -87,13 +87,13 @@ public class Category implements java.io.Serializable {
 		this.hot = hot;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "category")
-	public Set<Product> getProducts() {
-		return this.products;
-	}
-
-	public void setProducts(Set<Product> products) {
-		this.products = products;
-	}
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "category")
+//	public Set<Product> getProducts() {
+//		return this.products;
+//	}
+//
+//	public void setProducts(Set<Product> products) {
+//		this.products = products;
+//	}
 	
 }

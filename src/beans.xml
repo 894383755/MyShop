@@ -63,31 +63,5 @@
 <!-- 	 	</aop:aspect> -->
 	 </aop:config>
 	 
-	<!-- 	注册Model -->
-<!-- 	<bean id="category" class="cn.it.shop.model.Category" >  -->
-<!-- 		<property name = "id" value = "10"></property> -->
-<!-- 		<property name="type" value = "女士服装"></property> -->
-<!-- 		<property name="hot"  value = "true"></property> -->
-<!-- 	</bean> -->
-	
-	<!-- 	注册Service -->
-<!-- 	<bean id="baseService" class="cn.it.shop.service.impl.BaseServiceImpl" lazy-init="true">   -->
-<!--      	<property name="sessionFactory" ref="sessionFactory" />   -->
-<!-- 	</bean> -->
-<!-- 	<bean id="categoryService" class="cn.it.shop.service.impl.CategoryServiceImpl" parent="baseService"> -->
-<!-- 		<property name="sessionFactory" ref="sessionFactory" /> -->
-<!-- 	</bean> -->
-<!-- 	<bean id="accountService" class="cn.it.shop.service.impl.AccountServiceImpl" parent="baseService" />  -->
-	
-	<!-- 	注册Action -->
-<!-- 	<bean id="baseAction" class="cn.it.shop.action.BaseAction" scope="prototype">   -->
-<!-- 	     <property name="categoryService" ref="categoryService"></property>   -->
-<!-- 	     <property name="accountService" ref="accountService"></property>   -->
-<!-- 	</bean>   -->
-<!-- 	<bean id="categoryAction" scope="prototype" parent="baseAction" -->
-<!-- 		class="cn.it.shop.action.CategoryAction"> -->
-<!-- 		<property name="categoryService" ref="categoryService" /> -->
-<!-- 		<property name="category" ref="category" /> -->
-<!-- 	</bean> -->
 	<bean id="date" class="java.util.Date"></bean>
 </beans>

@@ -16,12 +16,21 @@ public class Account implements java.io.Serializable {
 	private String login;
 	private String name;
 	private String pass;
-	private Set<Category> categories  = new HashSet<Category>(0);
+	//private Set<Category> categories  = new HashSet<Category>(0);
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "account")  
-	public Set<Category> getCategories() {  
-	    return this.categories;  
+	public Account() {
 	}
+
+	@Override
+	public String toString() {
+		return "Account [id=" + id + ", login=" + login + ", name=" + name
+				+ ", pass=" + pass + "]";
+	}
+	
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "account")  
+//	public Set<Category> getCategories() {  
+//	    return this.categories;  
+//	}
 	@Id
 	@GeneratedValue
 	@Column(name = "id", unique = true, nullable = false)
@@ -57,8 +66,8 @@ public class Account implements java.io.Serializable {
 		this.pass = pass;
 	}
 
-	public void setCategories(Set<Category> categories) {
-		this.categories = categories;
-	} 
+//	public void setCategories(Set<Category> categories) {
+//		this.categories = categories;
+//	} 
 	
 }

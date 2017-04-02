@@ -24,9 +24,7 @@
 		<mapping class="cn.it.shop.model.Category" />
 		<mapping class="cn.it.shop.model.Account" />
 		<mapping class="cn.it.shop.model.Product" />
-		
-<!-- 		<mapping resource="cn/it/shop/model/Category" /> -->
-<!-- 		<mapping resource="cn/it/shop/model/Product" /> -->
+
 	</session-factory>
 
 </hibernate-configuration>

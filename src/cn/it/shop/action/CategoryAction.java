@@ -21,14 +21,13 @@ public class CategoryAction extends BaseAction<Category> {
         categoryService.update(model);  
     } 
 	public String queryJoinAccount() {  
-		//System.out.println("进入acction queryJoinAccount");
         //用来存储分页的数据  
         pageMap = new HashMap<String, Object>();  
         //根据关键字和分页的参数查询相应的数据。这个方法我们在Service中写过了，当时完成级联查询  
         List<Category> categoryList = categoryService.queryJoinAccount(model.getType(), page, rows);  
         pageMap.put("rows", categoryList); //存储为JSON格式，从上一节的json文件可以看出，一个key是total,一个key是rows，这里先把rows存放好  
         //根据关键字查询总记录数  
-        Long total = categoryService.getCount(model.getType()); //这个方法没写，我们等会儿去Service层完善一下  
+        Long total = categoryService.getCount(model.getType());  
         System.out.println("queryJoinAccount:"+total);  
         pageMap.put("total", total); //存储为JSON格式，再把total存放好  
         return "jsonMap";  

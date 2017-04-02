@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Product {
+public class Product implements java.io.Serializable{
 	/** 商品编号 **/
 	private Integer id;
 	/** 商品名称**/

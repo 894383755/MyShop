@@ -111,12 +111,13 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
     public void setAccountService(AccountService accountService) {  
         this.accountService = accountService;  
     }
-
+	public void setProductService(ProductService productService) {
+		this.productService = productService;
+	}  
 	public InputStream getInputStream() {
 		return inputStream;
 	}
-
 	public void setInputStream(InputStream inputStream) {
 		this.inputStream = inputStream;
-	}  
+	}
 }  
