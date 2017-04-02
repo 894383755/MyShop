@@ -36,11 +36,11 @@ public class Product implements java.io.Serializable {
 	/** 是否为有效商品**/
 	private Boolean open;
 	/** 商品所在类别编号**/
-	private Category category;
+	//private Category category;
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", category=" + category + ", name="
+		return "Product [id=" + id + ", name="
 				+ name + ", price=" + price + ", pic=" + pic + ", remark="
 				+ remark + ", xremark=" + xremark + ", commend=" + commend + ", open=" + open + "]";
 	}
@@ -60,7 +60,7 @@ public class Product implements java.io.Serializable {
 	public Product(Category category, String name, BigDecimal price, String pic,
 			String remark, String xremark, Date date, Boolean commend,
 			Boolean open) {
-		this.category = category;
+		//this.category = category;
 		this.name = name;
 		this.price = price;
 		this.pic = pic;
@@ -97,15 +97,15 @@ public class Product implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cid")
-	public Category getCategory() {
-		return this.category;
-	}
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "cid")
+//	public Category getCategory() {
+//		return this.category;
+//	}
 
-	public void setCategory(Category category) {
-		this.category = category;
-	}
+//	public void setCategory(Category category) {
+//		this.category = category;
+//	}
 
 	@Column(name = "name", length = 20)
 	public String getName() {
