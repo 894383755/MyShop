@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import cn.it.shop.model.Product;
 import cn.it.shop.service.ProductService;
 
+@SuppressWarnings("unchecked") 
 @Service("productService")
 public class ProductServiceImpl extends BaseServiceImpl<Product> implements ProductService {
 		@Override
@@ -29,7 +30,17 @@ public class ProductServiceImpl extends BaseServiceImpl<Product> implements Prod
 	    }
 	    @Override  
 	    public void deleteByIds(String ids) {  
-	        String hql = "delete from product p where p.id in (" + ids + ")";  
-	        getSession().createQuery(hql).executeUpdate();  
+	        String hql = "delete from Product p where p.id in (" + ids + ")"; 
+	        getSession().createQuery(hql).executeUpdate(); 
 	    }
+	    @Override  
+	    public List<Product> querByCategoryId(int cid) {  
+	        String hql = "from Product p join fetch p.category "  
+	                + "where p.commend=true and p.open=true and p.category.id=:cid order by p.date desc";  
+	        return getSession().createQuery(hql)  
+	            .setInteger("cid", cid)  
+	            .setFirstResult(0)  
+	            .setMaxResults(4)  
+	            .list();  
+	    } 
 }

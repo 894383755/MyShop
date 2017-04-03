@@ -82,10 +82,14 @@ public class TestMyShop {
     private ProductService productService;  
     
     @Test
-    public void testQueryJoinAccount3() { 
+    public void testProduct1() { 
     	for(Product c : productService.queryJoinCategory("",1,2)) { //显示第一页，每页2条数据  
     		System.out.println(c + "," + c.getName());  
     	}  
+    }
+    @Test
+    public void testProduct2() { 
+    	productService.deleteByIds("1");
     }
 
 }

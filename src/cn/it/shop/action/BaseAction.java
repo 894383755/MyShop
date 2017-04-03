@@ -16,13 +16,21 @@ import org.springframework.stereotype.Controller;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
+import cn.it.shop.model.FileImage;
 import cn.it.shop.service.AccountService;
 import cn.it.shop.service.CategoryService;
 import cn.it.shop.service.ProductService;
+import cn.it.shop.utils.FileUpload;
 
 @Controller("baseAction")
 @Scope("prototype")
 public class BaseAction<T> extends ActionSupport implements RequestAware,SessionAware,ApplicationAware,ModelDriven{  
+	
+	//封装了图片信息的类  
+    protected FileImage fileImage;
+    //上传文件工具类  
+    @Resource  
+    protected FileUpload fileUpload;
 	//用来装有将要被打包成json格式返回给前台的数据  
     protected List<T> jsonList = null;
 	//
@@ -120,4 +128,10 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	public void setInputStream(InputStream inputStream) {
 		this.inputStream = inputStream;
 	}
+	public FileImage getFileImage() {  
+        return fileImage;  
+    }  
+    public void setFileImage(FileImage fileImage) {  
+        this.fileImage = fileImage;  
+    }  
 }  

@@ -14,7 +14,11 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
   
   <listener>  
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
-  </listener>  
+  </listener>
+  <!-- 自定义的监听器，继承了ContextLoaderListener 覆盖了上面的监听器-->
+<!--   <listener>   -->
+<!--     <listener-class>cn/it/shop/listener/InitDataListener.java</listener-class>   -->
+<!--   </listener>   -->
     
   <filter>  
     <filter-name>struts2</filter-name>  

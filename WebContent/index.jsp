@@ -6,21 +6,8 @@
     <%@ include file="/public/head.jspf" %>  
   </head>   
   <body>
-  	<a href="send_main_aindex.action">直接到后台EasyUI版</a>  
-    <a href="/WEN-INF/main/aindex.jsp">测试到后台</a>
-    <a href="${pageContext.request.contextPath }/category_update.action?category.id=2&category.type=gga&category.hot=false">访问update</a>  
-    <a href="category_save.action?id=1&type=haha&hot=true">save测试ModelDriven</a> 
-    <a href="category_query.action">查询所有类别</a><br/>  
-    <c:forEach items="${requestScope.categoryList }" var="category">  
-        ${category.id } | ${category.type } | ${category.type }  <br/>  
-    </c:forEach>  
-      
-    <c:forEach items="${sessionScope.categoryList }" var="category">  
-        ${category.id } | ${category.type } | ${category.type }  <br/>  
-    </c:forEach>  
-      
-    <c:forEach items="${applicationScope.categoryList }" var="category">  
-        ${category.id } | ${category.type }| ${category.type } <br/>  
-    </c:forEach>  
+  	<a href="index10.jsp">访问前台</a>  
+  	<a href="send_main_aindex.action">访问后台</a>  
+<!--     <a href="/WEN-INF/main/aindex.jsp">测试到后台</a> -->
   </body>  
 </html> 

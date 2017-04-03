@@ -16,7 +16,6 @@ public class ProductAction extends BaseAction<Product> {
 	public String queryJoinCategory() {		
 		//用来存储分页的数据
 		pageMap = new HashMap<String, Object>();
-		
 		//根据关键字和分页的参数查询相应的数据
 		List<Product> productList = productService.queryJoinCategory(model.getName(), page, rows);
 		pageMap.put("rows", productList); //存储为JSON格式
@@ -34,19 +33,20 @@ public class ProductAction extends BaseAction<Product> {
         return "stream";  
     } 
 	 public void save() throws Exception {  
-	        //处理上传的图片，下一篇博客专门分析struts2文件上传  
-	          
-	        model.setDate(new Date()); //设置一下当前时间，因为前台没有把时间字段传进来，这里自己设置一下即可  
-	        System.out.println(model);  
-	        //商品信息入库  
-	        productService.save(model);  
+	 	//fileUpload工具类被抽取了，uploadFile方法直接接受一个fileImage对象，返回新的图片名  
+        String pic = fileUpload.uploadFile(fileImage);  
+        model.setPic(pic);  
+        model.setDate(new Date()); //设置一下当前时间，因为前台没有把时间字段传进来，这里自己设置一下即可  
+        System.out.println(model);  
+        //商品信息入库  
+        productService.save(model);  
 	 }  
 	 public void update() throws Exception {  
-	        //处理上传的图片，下一篇博客专门分析struts2文件上传  
-	          
-	        model.setDate(new Date()); //设置一下当前时间，因为前台没有把时间字段传进来，这里自己设置一下即可  
-	        System.out.println(model);  
-	        //更新商品  
-	        productService.update(model);  
+	 	String pic = fileUpload.uploadFile(fileImage);  
+        model.setPic(pic);  
+        model.setDate(new Date()); //设置一下当前时间，因为前台没有把时间字段传进来，这里自己设置一下即可  
+        System.out.println(model);  
+        //更新商品  
+        productService.update(model);  
 	  }
 }

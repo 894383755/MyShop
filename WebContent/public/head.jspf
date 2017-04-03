@@ -2,7 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <c:set value="${pageContext.request.contextPath }" var="shop" />  
 <title>易购商城</title>  
-  
+<!-- 下面是前端网页样式 -->
+<link rel="styLesheet" href="${shop }/css/public.css" ></link> 
+<link rel="styLesheet" href="${shop }/css/style.css" ></link> 
 <!-- 下面是easyui的环境 -->  
 <link rel="stylesheet" href="${shop }/jquery-easyui/themes/icon.css" type="text/css"></link>  
 <link rel="stylesheet" href="${shop }/jquery-easyui/themes/default/easyui.css" type="text/css"></link>  
