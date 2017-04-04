@@ -42,7 +42,7 @@
                 width:120, //要同时设置两个宽度才行  
                 editable:false, //下拉框不允许编辑  
                 //combobox继承combo继承validatebox，所以可以直接在这里设置验证  
-                required:true,  
+                required:false, //是否是必须填写的 
                 missingMessage:'请选择所属类别'  
             });    
                   

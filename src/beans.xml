@@ -63,5 +63,14 @@
 <!-- 	 	</aop:aspect> -->
 	 </aop:config>
 	 
+ 	<!-- 配置下载方式的注解 -->
+ 	<bean id="prop" class="org.springframework.beans.factory.config.PropertiesFactoryBean">  
+	    <property name="locations">
+	        <array>  
+	            <value>classpath:public.properties</value>  
+	        </array>  
+	    </property>  
+	</bean> 
+	
 	<bean id="date" class="java.util.Date"></bean>
 </beans>

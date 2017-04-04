@@ -15,7 +15,7 @@ public class FileUploadUtil implements FileUpload {
 
 	private String filePath; 
 	
-    //@Value("#{prop.filePath}")   
+    @Value("#{prop.filePath}")   
     //@Value表示去beans.xml文件中找id="prop"的bean，它是通过注解的方式读取properties配置文件的，然后去相应的配置文件中读取key=filePath的值  
     public void setFilePath(String filePath) {  
         System.out.println(filePath);  
