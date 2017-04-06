@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,7 +28,7 @@ public class User implements java.io.Serializable {
 	private String sex;
 	private String phone;
 	private String email;
-	private Set<Forder> forders = new HashSet<Forder>(0);
+	//private Set<Forder> forders = new HashSet<Forder>(0);
 
 	// Constructors
 
@@ -44,7 +45,7 @@ public class User implements java.io.Serializable {
 		this.sex = sex;
 		this.phone = phone;
 		this.email = email;
-		this.forders = forders;
+		//this.forders = forders;
 	}
 
 	// Property accessors
@@ -113,13 +114,13 @@ public class User implements java.io.Serializable {
 		this.email = email;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<Forder> getForders() {
-		return this.forders;
-	}
-
-	public void setForders(Set<Forder> forders) {
-		this.forders = forders;
-	}
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+//	public Set<Forder> getForders() {
+//		return this.forders;
+//	}
+//
+//	public void setForders(Set<Forder> forders) {
+//		this.forders = forders;
+//	}
 
 }

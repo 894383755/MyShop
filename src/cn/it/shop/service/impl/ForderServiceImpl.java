@@ -19,4 +19,10 @@ public class ForderServiceImpl extends BaseServiceImpl<Forder> implements Forder
         }  
         return total;  
     }
+	 @Override
+    public Forder test() {  
+        String hql = "from Forder f ";  
+        return (Forder) getSession().createQuery(hql)   
+            .uniqueResult(); //返回一条记录:总记录数  
+    }
 }

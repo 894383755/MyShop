@@ -27,9 +27,12 @@ import cn.it.shop.action.ProductAction;
 import cn.it.shop.model.Account;
 import cn.it.shop.model.Category;
 import cn.it.shop.model.Product;
+import cn.it.shop.model.User;
 import cn.it.shop.service.AccountService;
 import cn.it.shop.service.CategoryService;
+import cn.it.shop.service.ForderService;
 import cn.it.shop.service.ProductService;
+import cn.it.shop.service.UserService;
 import cn.it.shop.service.impl.CategoryServiceImpl;
 @RunWith(SpringJUnit4ClassRunner.class)  
 @ContextConfiguration(locations="classpath:beans.xml")
@@ -79,17 +82,11 @@ public class TestMyShop {
         }  
     }
     @Resource  
-    private ProductService productService;  
+    private ForderService forderService;  
     
     @Test
-    public void testProduct1() { 
-    	for(Product c : productService.querByCategoryId(2)) { //显示第一页，每页2条数据  
-    		System.out.println(c + "," + c.getName());  
-    	}  
-    }
-    @Test
-    public void testProduct2() { 
-    	productService.deleteByIds("1");
+    public void testProduct1() {
+    	 forderService.test(); 
     }
 
 }

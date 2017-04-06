@@ -22,6 +22,7 @@ import cn.it.shop.service.CategoryService;
 import cn.it.shop.service.ForderService;
 import cn.it.shop.service.ProductService;
 import cn.it.shop.service.SorderService;
+import cn.it.shop.service.UserService;
 import cn.it.shop.utils.FileUpload;
 
 @Controller("baseAction")
@@ -55,6 +56,8 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
     protected ForderService forderService;  
     @Resource  
     protected SorderService sorderService;
+    @Resource
+    protected UserService userService;
     //域对象   
     protected Map<String, Object> request;  
     protected Map<String, Object> session;  
@@ -146,5 +149,9 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 
 	public void setSorderService(SorderService sorderService) {
 		this.sorderService = sorderService;
+	}
+
+	public void setUserservice(UserService userService) {
+		this.userService = userService;
 	}  
 }  

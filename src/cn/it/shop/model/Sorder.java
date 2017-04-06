@@ -61,7 +61,7 @@ public class Sorder implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "fid")
 	public Forder getForder() {
 		return this.forder;
@@ -71,7 +71,7 @@ public class Sorder implements java.io.Serializable {
 		this.forder = forder;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "pid")
 	public Product getProduct() {
 		return this.product;

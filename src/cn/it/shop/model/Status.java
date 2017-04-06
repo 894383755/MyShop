@@ -23,7 +23,7 @@ public class Status implements java.io.Serializable {
 
 	private Integer id;
 	private String status;
-	private Set<Forder> forders = new HashSet<Forder>(0);
+	//private Set<Forder> forders = new HashSet<Forder>(0);
 
 	// Constructors
 
@@ -41,7 +41,7 @@ public class Status implements java.io.Serializable {
 	/** full constructor */
 	public Status(String status, Set<Forder> forders) {
 		this.status = status;
-		this.forders = forders;
+		//this.forders = forders;
 	}
 
 	
@@ -71,13 +71,13 @@ public class Status implements java.io.Serializable {
 		this.status = status;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "status")
-	public Set<Forder> getForders() {
-		return this.forders;
-	}
-
-	public void setForders(Set<Forder> forders) {
-		this.forders = forders;
-	}
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "status")
+//	public Set<Forder> getForders() {
+//		return this.forders;
+//	}
+//
+//	public void setForders(Set<Forder> forders) {
+//		this.forders = forders;
+//	}
 
 }

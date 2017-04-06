@@ -58,7 +58,7 @@ public class Forder implements java.io.Serializable {
 
 	public Forder(List<Sorder> sorders) {
 		super();
-		this.sorders = sorders;
+		//this.sorders = sorders;
 	}
 
 	/** full constructor */
@@ -74,7 +74,7 @@ public class Forder implements java.io.Serializable {
 		this.total = total;
 		this.post = post;
 		this.address = address;
-		this.sorders = sorders;
+//		this.sorders = sorders;
 	}
 
 	// Property accessors
@@ -89,7 +89,7 @@ public class Forder implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "uid")
 	public User getUser() {
 		return this.user;
@@ -99,7 +99,7 @@ public class Forder implements java.io.Serializable {
 		this.user = user;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "sid")
 	public Status getStatus() {
 		return this.status;

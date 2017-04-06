@@ -15,7 +15,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
   <listener>  
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
   </listener>
-  <!-- 自定义的监听器，继承了ContextLoaderListener 覆盖了上面的监听器-->
+  <!-- 自定义的监听器，继承了ContextLoaderListener -->
   <listener>  
     <listener-class>cn.it.shop.listener.InitDataListener</listener-class>  
   </listener>  
@@ -24,11 +24,21 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
     <filter-name>struts2</filter-name>  
     <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>  
   </filter>  
-    
+<!--     替代上面的过滤器 -->
+  <filter>  
+    <filter-name>UserFilter</filter-name>  
+    <filter-class>cn.it.shop.filter.UserFilter</filter-class>  
+  </filter>  
+  
   <filter-mapping>  
     <filter-name>struts2</filter-name>  
     <url-pattern>*.action</url-pattern>  
-  </filter-mapping>  
+  </filter-mapping> 
+  <filter-mapping>  
+    <filter-name>UserFilter</filter-name>  
+    <url-pattern>/user/*</url-pattern>  
+  </filter-mapping> 
+   
     <welcome-file-list>
 		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>
