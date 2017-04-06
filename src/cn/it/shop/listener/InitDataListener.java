@@ -36,7 +36,12 @@ public class InitDataListener implements ServletContextListener {
         // 1. 查询出热点类别  
         for(Category category : categoryService.queryByHot(true)) {  
             //根据热点类别id获取推荐商品信息  
-            List<Product> lst = productService.querByCategoryId(category.getId());  
+            List<Product> lst = productService.querByCategoryId(category.getId());
+//测试：：
+//            System.out.println("category:" + category.getId());
+//            for(Product product : lst){
+//            	System.out.println("product:" + product.getId());
+//            }
             bigList.add(lst); //将装有category的list放到bigList中  
         }  
         // 2. 把查询的bigList交给application内置对象  

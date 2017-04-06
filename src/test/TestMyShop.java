@@ -74,7 +74,7 @@ public class TestMyShop {
    
     @Test
     public void testQueryJoinAccount2() { 
-        for(Category c : categoryService.queryJoinAccount("",1,2)) { //显示第一页，每页2条数据  
+        for(Category c : categoryService.queryByHot(true)) {  
             System.out.println(c + "," + c.getAccount());  
         }  
     }
@@ -83,7 +83,7 @@ public class TestMyShop {
     
     @Test
     public void testProduct1() { 
-    	for(Product c : productService.queryJoinCategory("",1,2)) { //显示第一页，每页2条数据  
+    	for(Product c : productService.querByCategoryId(2)) { //显示第一页，每页2条数据  
     		System.out.println(c + "," + c.getName());  
     	}  
     }
