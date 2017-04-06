@@ -1,12 +1,19 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 
-# Custom for Visual Studio
-*.cs     diff=csharp
-*.html linguist-language=Scala
-*.js linguist-language=Scala
-*.css linguist-language=Scala
-*.java linguist-language=Scala
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Custom for eclipse
+*.java linguist-language=Java
+*.jsp linguist-language=Jsp
 
 # Standard to msysgit
 *.doc	 diff=astextplain
