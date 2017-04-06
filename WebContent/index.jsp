@@ -6,8 +6,9 @@
     <%@ include file="/public/head.jspf" %>  
   </head>   
   <body>
-  	<a href="index10.jsp">访问前台</a>  
-  	<a href="send_main_aindex.action">访问后台</a>  
+  	<a href="send_main_index10.action">访问前台</a>  
+  	<a href="send_main_aindex.action">访问后台</a> 
+  	<a href="send_main_detail.action">其他</a>
 <!--     <a href="/WEN-INF/main/aindex.jsp">测试到后台</a> -->
   </body>  
 </html> 

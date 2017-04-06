@@ -19,7 +19,9 @@ import com.opensymphony.xwork2.ModelDriven;
 import cn.it.shop.model.FileImage;
 import cn.it.shop.service.AccountService;
 import cn.it.shop.service.CategoryService;
+import cn.it.shop.service.ForderService;
 import cn.it.shop.service.ProductService;
+import cn.it.shop.service.SorderService;
 import cn.it.shop.utils.FileUpload;
 
 @Controller("baseAction")
@@ -49,7 +51,10 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
     protected AccountService accountService;  
     @Resource
     protected ProductService productService;
-  
+    @Resource  
+    protected ForderService forderService;  
+    @Resource  
+    protected SorderService sorderService;
     //域对象   
     protected Map<String, Object> request;  
     protected Map<String, Object> session;  
@@ -133,5 +138,13 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
     }  
     public void setFileImage(FileImage fileImage) {  
         this.fileImage = fileImage;  
-    }  
+    }
+
+	public void setForderService(ForderService forderService) {
+		this.forderService = forderService;
+	}
+
+	public void setSorderService(SorderService sorderService) {
+		this.sorderService = sorderService;
+	}  
 }  

@@ -12,6 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+/**
+ * 商品类别
+ * @author 王
+ */
 @Entity
 public class Category implements java.io.Serializable {
 	private Integer id;

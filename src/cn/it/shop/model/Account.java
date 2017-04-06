@@ -2,7 +2,6 @@ package cn.it.shop.model;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +9,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+/**
+ * 管理员账户
+ * @author 王
+ */
 @Entity
 public class Account implements java.io.Serializable {
 	private Integer id;

@@ -52,7 +52,10 @@
 			<result name="stream" type="stream">  
                 <param name="inputName">inputStream</param>  
             </result>
-		</action>  
+		</action>
+		<action name="sorder_*" class="sorderAction" method="{1}">  
+		    <result name="showCart">/showCart.jsp</result>  
+		</action>   
         <!-- 用来完成系统 请求转发的action,所有的请求都交给execute-->  
         <action name="send_*_*" class="sendAction">  
             <result name="send">/WEB-INF/{1}/{2}.jsp</result>  

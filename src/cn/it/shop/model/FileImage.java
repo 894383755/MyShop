@@ -2,6 +2,10 @@ package cn.it.shop.model;
 
 import java.io.File;
 
+/**
+ * 文件类别
+ * @author 王
+ */
 public class FileImage {
 	/** 文件 **/
 	private File file;

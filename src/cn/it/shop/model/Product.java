@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+/**
+ * 商品类
+ * @author 王
+ */
 @Entity
 public class Product implements java.io.Serializable {
 
